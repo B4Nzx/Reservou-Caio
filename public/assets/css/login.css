@@ -1,0 +1,28 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .bg-bordeaux {
+    background-color: #8B0000;
+  }
+  
+  .text-gold {
+    color: #D4AF37;
+  }
+  
+  .border-gold {
+    border: 2px solid #D4AF37;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+  
+  .btn-gold {
+    background-color: #D4AF37;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 8px 20px;
+    border: none;
+    font-size: 16px;
+  }
+  

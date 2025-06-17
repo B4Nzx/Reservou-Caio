@@ -1,0 +1,72 @@
+<script>
+    async function carregarFeedbacks() {
+      const container = document.getElementById("listaFeedbacks");
+  
+      // Feedbacks do localStorage
+      const localFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+      localFeedbacks.forEach(f => {
+        container.innerHTML += gerarCard(f.nome, f.email, f.mensagem, f.data, "LocalStorage");
+      });
+  
+      // Feedbacks do db.json
+      try {
+        const res = await fetch("http://localhost:3000/feedbacks");
+        const dados = await res.json();
+        dados.forEach(f => {
+          container.innerHTML += gerarCardComExcluir(f.id, f.nome, f.email, f.mensagem, f.data, "JSON Server");
+        });
+      } catch (err) {
+        console.error(err);
+        alert("Erro ao buscar feedbacks do servidor.");
+      }
+    }
+  
+    function gerarCard(nome, email, mensagem, data, origem) {
+      return `
+        <div class="col">
+          <div class="card bg-light text-dark rounded-4 shadow-sm">
+            <div class="card-body">
+              <h6 class="fw-bold">${nome}</h6>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Mensagem:</strong><br>${mensagem}</p>
+              <p><strong>Data:</strong> ${data}</p>
+              <span class="badge bg-gold text-dark">${origem}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  
+    function gerarCardComExcluir(id, nome, email, mensagem, data, origem) {
+      return `
+        <div class="col" id="card-${id}">
+          <div class="card bg-light text-dark rounded-4 shadow-sm">
+            <div class="card-body">
+              <h6 class="fw-bold">${nome}</h6>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Mensagem:</strong><br>${mensagem}</p>
+              <p><strong>Data:</strong> ${data}</p>
+              <span class="badge bg-gold text-dark">${origem}</span>
+              <button class="btn btn-sm btn-danger float-end mt-2" onclick="excluirFeedback(${id})">Excluir</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  
+    async function excluirFeedback(id) {
+      if (confirm("Tem certeza que deseja excluir este feedback?")) {
+        try {
+          await fetch(`http://localhost:3000/feedbacks/${id}`, { method: "DELETE" });
+          document.getElementById(`card-${id}`).remove();
+          alert("Feedback excluído com sucesso.");
+        } catch (err) {
+          console.error(err);
+          alert("Erro ao excluir feedback.");
+        }
+      }
+    }
+  
+    carregarFeedbacks();
+  </script>
+  

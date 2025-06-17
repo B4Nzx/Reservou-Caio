@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Reservou</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="./assets/css/cadastro.css">
+</head>
+<body>
+  <div class="container-fluid vh-100 d-flex">
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-start p-5 form-section">
+      <h5 class="fw-bold">Bem Vindo ao Reservou!<br>Preencha os campos abaixo e faça seu cadastro</h5>
+
+      <form id="cadastroForm" class="w-100 mt-4">
+        <div class="mb-3">
+          <label class="form-label fw-bold text-gold">Email :</label>
+          <input type="email" class="form-control border-gold" id="email" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold text-gold">Password :</label>
+          <input type="password" class="form-control border-gold" id="password" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold text-gold">Confirm Password :</label>
+          <input type="password" class="form-control border-gold" id="confirmPassword" required>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <button type="submit" class="btn btn-gold me-3">Cadastrar</button>
+          <span><a href="/Pagina de Login Cliente/login.html" class="fw-bold text-dark">Já tem conta? Login.</a></span>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-6 bg-bordeaux d-flex justify-content-center align-items-center">
+      <img src="./assets/imgs/logo.png" width="250" alt="mesa"/>
+    </div>
+  </div>
+
+  <script src="./assets/scripts/cadastro.js"></script>
+</body>
+</html>
