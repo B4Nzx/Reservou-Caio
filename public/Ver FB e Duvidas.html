@@ -20,12 +20,6 @@
     async function carregarFeedbacks() {
       const container = document.getElementById("listaFeedbacks");
   
-      // Feedbacks do localStorage
-      const localFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-      localFeedbacks.forEach(f => {
-        container.innerHTML += gerarCard(f.nome, f.email, f.mensagem, f.data, "LocalStorage");
-      });
-  
       // Feedbacks do db.json
       try {
         const res = await fetch("http://localhost:3000/feedbacks");

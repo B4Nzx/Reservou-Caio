@@ -8,11 +8,6 @@ document.getElementById("feedbackForm").addEventListener("submit", async functio
   
     const feedback = { nome, email, mensagem, data };
   
-    // Salvar no localStorage
-    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-    feedbacks.push(feedback);
-    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
-  
     // Enviar para db.json
     try {
       await fetch("http://localhost:3000/feedbacks", {
