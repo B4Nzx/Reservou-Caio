@@ -1,11 +1,18 @@
 {
-  "usuarios": [
+  "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@adm.com",
-      "senha": "admin"
+      "password": "admin"
     }
   ],
   "feedbacks": [
+    {
+      "id": "bfc2",
+      "nome": "teste",
+      "email": "teste@teste.com",
+      "mensagem": "teste",
+      "data": "17/06/2025, 21:02:23"
+    }
   ]
 }
