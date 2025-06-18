@@ -6,13 +6,5 @@
       "password": "admin"
     }
   ],
-  "feedbacks": [
-    {
-      "id": "bfc2",
-      "nome": "teste",
-      "email": "teste@teste.com",
-      "mensagem": "teste",
-      "data": "17/06/2025, 21:02:23"
-    }
-  ]
+  "feedbacks": []
 }

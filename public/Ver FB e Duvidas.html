@@ -1,86 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizar Feedbacks</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/FB e Duvidas.css">
+  <title>Ver Feedbacks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #8B0000;
+    }
+    .card {
+      background-color: #FFFDD0;
+      border: 2px solid #FFFDD0;
+      border-left-width: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .titulo {
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .badge-origem {
+      background-color: #ff0019;
+    }
+  </style>
 </head>
-<body class="bg-bordeaux text-white py-5">
-
-  <div class="container">
-    <h3 class="text-center mb-4">Feedbacks Recebidos</h3>
-    <div id="listaFeedbacks" class="row row-cols-1 row-cols-md-2 g-4">
-      <!-- feedbacks serão inseridos aqui -->
+<body>
+  <div class="container py-5">
+    <h2 class="text-center mb-4 titulo">Feedbacks e Dúvidas Recebidos</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="feedback-container">
+      <!-- Cartões serão inseridos aqui -->
     </div>
   </div>
 
-  <script>
-    async function carregarFeedbacks() {
-      const container = document.getElementById("listaFeedbacks");
-  
-      // Feedbacks do db.json
-      try {
-        const res = await fetch("http://localhost:3000/feedbacks");
-        const dados = await res.json();
-        dados.forEach(f => {
-          container.innerHTML += gerarCardComExcluir(f.id, f.nome, f.email, f.mensagem, f.data, "JSON Server");
-        });
-      } catch (err) {
-        console.error(err);
-        alert("Erro ao buscar feedbacks do servidor.");
-      }
-    }
-  
-    function gerarCard(nome, email, mensagem, data, origem) {
-      return `
-        <div class="col">
-          <div class="card bg-light text-dark rounded-4 shadow-sm">
-            <div class="card-body">
-              <h6 class="fw-bold">${nome}</h6>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Mensagem:</strong><br>${mensagem}</p>
-              <p><strong>Data:</strong> ${data}</p>
-              <span class="badge bg-gold text-dark">${origem}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-  
-    function gerarCardComExcluir(id, nome, email, mensagem, data, origem) {
-      return `
-        <div class="col" id="card-${id}">
-          <div class="card bg-light text-dark rounded-4 shadow-sm">
-            <div class="card-body">
-              <h6 class="fw-bold">${nome}</h6>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Mensagem:</strong><br>${mensagem}</p>
-              <p><strong>Data:</strong> ${data}</p>
-              <span class="badge bg-gold text-dark">${origem}</span>
-              <button class="btn btn-sm btn-danger float-end mt-2" onclick="excluirFeedback(${id})">Excluir</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-  
-    async function excluirFeedback(id) {
-      if (confirm("Tem certeza que deseja excluir este feedback?")) {
-        try {
-          await fetch(`http://localhost:3000/feedbacks/${id}`, { method: "DELETE" });
-          document.getElementById(`card-${id}`).remove();
-          alert("Feedback excluído com sucesso.");
-        } catch (err) {
-          console.error(err);
-          alert("Erro ao excluir feedback.");
-        }
-      }
-    }
-  
-    carregarFeedbacks();
-  </script>  
-
+  <script src="./assets/scripts/Ver FB e Duvidas.js"></script>
 </body>
 </html>
